@@ -157,6 +157,18 @@ std::optional<uint64_t> getBytesWritten(
   return std::stoll(fields[fieldNum], nullptr /* pos */, 0 /* base */) * factor;
 }
 
+std::optional<uint64_t> generalWriteBytes(
+    const std::shared_ptr<ProcessFactory>& processFactory,
+    const folly::StringPiece& nvmePath,
+    const folly::StringPiece& devicePath) {
+
+  return getBytesWritten(processFactory,
+                         nvmePath,
+                         {"smart-log", devicePath.str()},
+                         3 /* field num */,
+                         512 /* factor */);
+}
+
 // The output for a Samsung device looks like:
 //
 // clang-format off
@@ -403,6 +415,7 @@ uint64_t nandWriteBytes(const folly::StringPiece& deviceName,
                 {"mzol23t8hcls-", samsungWriteBytes},
                 // The Samsung PM983a doesn't include Samsung in the model
                 // number at this time, but it's a Samsung device.
+		{"mzol63t8hdlt-", generalWriteBytes}, /* PM9D3, FDP */
                 {"liteon", liteonWriteBytes},
                 {"ssstc", liteonWriteBytes},
                 {"intel", intelWriteBytes},
