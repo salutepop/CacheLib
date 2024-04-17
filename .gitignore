@@ -20,3 +20,9 @@ cachelib/external/gflags/
 cachelib/external/glog/
 cachelib/external/googletest/
 cachelib/external/sparsemap/
+
+# peronal
+cscope*
+tags
+cachelib/external/fizz
+cachelib/external/wangle
