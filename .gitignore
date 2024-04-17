@@ -24,5 +24,6 @@ cachelib/external/sparsemap/
 # peronal
 cscope*
 tags
-cachelib/external/fizz
-cachelib/external/wangle
+cachelib/external/fizz/
+cachelib/external/wangle/
+cachelib/external/zstd/
