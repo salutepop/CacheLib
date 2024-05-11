@@ -166,7 +166,7 @@ std::optional<uint64_t> generalWriteBytes(
                          nvmePath,
                          {"smart-log", devicePath.str()},
                          3 /* field num */,
-                         512 /* factor */);
+                         512*1000 /* factor */);
 }
 
 // The output for a Samsung device looks like:
